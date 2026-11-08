@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Freestyle Identity</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&family=Rubik:wght@400;500;700&family=Bangers&family=Bungee&family=Rock+Salt&family=Black+Ops+One&family=Special+Elite&family=Orbitron:wght@500;700&family=Russo+One&family=Righteous&display=swap" rel="stylesheet">
+<style>
+:root{color-scheme:dark;--wall:#2b2b30;--wall2:#212125;--brick:#17171a;--blue:#7fdcff;--purple:#4a1d96;--purple2:#8b5cf6;--text:#ececf1;--muted:#9a9aa8;--card:#2f2f36;--line:#45454f;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--wall2);color:var(--text);font-family:Rubik,system-ui,sans-serif}
+body{min-height:100vh;background-image:linear-gradient(var(--brick) 2px,transparent 2px),linear-gradient(90deg,var(--brick) 2px,transparent 2px);background-size:100% 44px,88px 44px;background-color:var(--wall)}
+.rap{font-family:'Permanent Marker','Brush Script MT',cursive}
+.g3d{font-family:'Permanent Marker','Brush Script MT',cursive;color:#ffd60a;letter-spacing:2px;text-shadow:1px 1px 0 #000,2px 2px 0 #000,3px 3px 0 #000,4px 4px 0 #000,5px 5px 0 #000,6px 6px 0 #000,7px 7px 8px rgba(0,0,0,.7)}
+#intro{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;background:var(--wall2);text-align:center;padding:24px;cursor:pointer}
+#intro h1{font-size:clamp(30px,8vw,64px);margin:0;opacity:0;animation:fade 6s ease-in-out forwards;line-height:1.2}
+@keyframes fade{0%{opacity:0;transform:scale(.96)}45%,60%{opacity:1;transform:scale(1)}100%{opacity:0;transform:scale(1.02)}}
+@media(prefers-reduced-motion:reduce){#intro h1{animation-duration:6s}}
+main{max-width:760px;margin:0 auto;padding:18px 16px 60px}
+.icon{width:132px;height:132px;border-radius:28px;margin:6px auto 10px;display:flex;align-items:center;justify-content:center;text-align:center;line-height:1;font-size:27px;background-color:#3a3a40;background-image:linear-gradient(#222 2px,transparent 2px),linear-gradient(90deg,#222 2px,transparent 2px);background-size:100% 22px,44px 22px;box-shadow:inset 0 0 18px #000a,0 6px 16px #0008;border:2px solid #1a1a1d}
+.home-h{text-align:center;font-size:30px;margin:0 0 4px}
+.sub{text-align:center;color:var(--muted);margin:0 0 20px;font-size:15px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.tile{background:var(--card);border:2px solid var(--line);border-radius:10px;padding:14px;text-align:left;color:var(--text);cursor:pointer;font:inherit;box-shadow:4px 4px 0 var(--purple)}
+.tile:hover,.tile:focus-visible{border-color:var(--blue);outline:none}
+.tile b{display:block;font-size:19px;color:var(--blue);font-family:'Permanent Marker',cursive;font-weight:400;margin-bottom:4px}
+.tile span{font-size:13.5px;color:var(--muted)}
+.back{background:none;border:2px solid var(--line);color:var(--text);border-radius:8px;padding:8px 14px;font:inherit;cursor:pointer;margin-bottom:12px}
+h2.mt{font-size:30px;margin:4px 0 2px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:10px;padding:14px;margin:12px 0}
+.card h3{margin:0 0 8px;font-size:19px;color:var(--blue);font-family:'Permanent Marker',cursive;font-weight:400}
+.out{min-height:64px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:center;background:var(--wall2);border-radius:8px;padding:10px;margin:8px 0;text-align:center}
+.out .w{font-size:clamp(24px,7vw,40px);font-family:'Permanent Marker',cursive;color:var(--text)}
+.out .kv{width:100%;font-size:18px}.out .kv i{font-style:normal;color:var(--blue);font-weight:700}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+button.go{background:var(--purple2);color:#fff;border:0;border-radius:8px;padding:10px 16px;font:inherit;font-weight:700;cursor:pointer;box-shadow:0 3px 0 var(--purple)}
+button.go:active{transform:translateY(2px);box-shadow:none}
+button.alt{background:var(--wall2);color:var(--text);border:2px solid var(--line);border-radius:8px;padding:8px 12px;font:inherit;cursor:pointer}
+button.alt.on{border-color:var(--blue);color:var(--blue)}
+select,input[type=text]{background:var(--wall2);color:var(--text);border:2px solid var(--line);border-radius:8px;padding:8px;font:inherit}
+input[type=text]{flex:1;min-width:140px}
+details{background:var(--card);border:2px solid var(--line);border-radius:10px;margin:12px 0}
+summary{padding:13px 14px;cursor:pointer;font-family:'Permanent Marker',cursive;font-size:19px;color:var(--blue)}
+details>div{padding:0 14px 14px}
+details p,details li{line-height:1.5;font-size:15px}
+.scheme{background:var(--wall2);border-left:4px solid var(--purple2);border-radius:6px;padding:8px 12px;margin:10px 0;font-size:15px;line-height:1.55}
+.scheme b{color:var(--blue)}
+.goal{display:flex;gap:10px;align-items:flex-start;padding:6px 0;font-size:15px;line-height:1.4}
+.goal input{margin-top:3px;width:18px;height:18px;accent-color:var(--purple2)}
+.beat{display:flex;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--line);font-size:14px}
+.beat span{flex:1;overflow-wrap:anywhere}
+audio{width:100%;margin-top:8px}
+.note{color:var(--muted);font-size:13px;margin:6px 0 0}
+.sec{margin:22px 0 4px;font-size:22px;color:#fff}
+.sec small{color:var(--muted);font-size:13px;font-family:Rubik,sans-serif}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+:root[data-theme="light"]{color-scheme:light;--wall:#dcdce2;--wall2:#eeeef2;--brick:#b9b9c4;--blue:#f2b800;--purple:#5b2bb5;--purple2:#7c4dff;--text:#000;--muted:#1a1a1a;--card:#f8f8fb;--line:#b4b4c0}
+:root[data-theme="light"] .sec{color:var(--text)}
+:root[data-theme="light"] :is(.tile b,.card h3,summary,.out .kv i,.scheme b,.panel h3,button.alt.on){text-shadow:-1px -1px 0 #000,1px -1px 0 #000,-1px 1px 0 #000,1px 1px 0 #000}
+:root[data-theme="light"] button.go{color:#ffd60a;background:var(--purple)}
+:root[data-theme="light"] .out .w{color:var(--text)}
+#bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;justify-content:space-between;padding:10px 14px;background:var(--wall2);border-bottom:2px solid var(--line)}
+#modal{display:none;position:fixed;inset:0;z-index:40;background:#000a;align-items:center;justify-content:center;padding:16px}
+.panel{background:var(--card);border:2px solid var(--line);border-radius:12px;padding:16px;width:100%;max-width:440px;max-height:85vh;overflow:auto}
+.panel h3{margin:0 0 8px;color:var(--blue);font-weight:400}
+.beat .alt{flex:none}
+#bar{gap:6px}#bar .alt{padding:7px 8px;font-size:13px}
+:root{--veil:rgba(0,0,0,.3)}:root[data-theme="light"]{--veil:rgba(255,255,255,.5)}
+body::before{content:"";position:fixed;inset:0;background:var(--veil);pointer-events:none;z-index:0}
+html[data-bg="brick"] body::before{display:none}
+main{position:relative;z-index:1}
+.bgp[data-k="brick"]{background-color:#2b2b30;background-image:linear-gradient(#17171a 2px,transparent 2px),linear-gradient(90deg,#17171a 2px,transparent 2px);background-size:100% 14px,28px 14px}
+.inst{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0 0;border-color:var(--blue)}.inst b{font-size:18px;color:var(--blue);font-weight:400}.inst .note{flex:1 1 180px;margin:0}
+</style>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/favicon.png">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<meta name="theme-color" content="#212125">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Freestyle">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+<div id="intro"><h1 class="rap g3d">Build your Freestyle Identity now!</h1></div>
+<header id="bar"><button class="alt" onclick="openModal('sound')" aria-label="Sound settings">🔊 Sound</button><button class="alt" onclick="openModal('font')" aria-label="Font">🔤 Font</button><button class="alt" onclick="openModal('bg')" aria-label="Background">🖼 BG</button><button class="alt" id="thbtn" onclick="openModal('theme')" aria-label="Theme settings">🌙 Night</button></header>
+<div id="modal" onclick="if(event.target===this)closeModal()"><div class="panel"><div id="mbody"></div><div class="row" style="margin-top:14px"><button class="go" onclick="closeModal()">Done</button></div></div></div>
+<div id="inst" style="max-width:760px;margin:0 auto;padding:0 16px;position:relative;z-index:1"></div>
+<main id="app"></main>
+<script>
+const $=s=>document.querySelector(s);
+const pick=a=>a[Math.floor(Math.random()*a.length)];
+const WORDS="anchor,volcano,mirror,spaghetti,thunder,pocket,galaxy,bicycle,cactus,whisper,engine,jungle,pillow,rocket,lantern,tornado,cinnamon,compass,umbrella,dragon,sunrise,keyboard,glacier,tiger,marble,hammer,carnival,satellite,lemon,shadow,diamond,orbit,bubble,castle,fire,river,ladder,magnet,crown,feather,blanket,saxophone,mountain,traffic,coconut,detective,jellyfish,microphone,passport,zombie,piano,ocean,bandage,popcorn,cloud,sword,telescope,tropical,hurricane,pirate,candle,alarm,monsoon,toolbox,highway,peanut,skeleton,wizard,island,notebook,cannon,rainbow,tractor,chameleon,banana,fortress,voltage,mosquito,canoe,paradox,vinegar,helmet,meteor,balloon,kingdom,doorbell,mango,boomerang,harvest,eclipse,lighthouse,sneakers,quicksand,parachute,bonfire,fossil,velvet,tsunami,puzzle,coral,battery,silence,dolphin,ghost,laundry,warrior,treasure,coffee,pyramid,drum,avalanche,spotlight,snorkel,kangaroo,ticket,gravity,honey,razor,circus,planet,frostbite,elevator".split(",");
+const STORY_A=["A lost traveller","A street musician","A kid with a secret","A retired superhero","A fisherman","A robot learning to feel","A village chief","A taxi driver at midnight","A broke genius","A ghost who can’t leave a school","A soldier coming home","An island girl with a dream"];
+const STORY_B=["finds a map that changes everything","has one night to fix a mistake","meets their future self","loses everything but gains something better","must choose between love and ambition","discovers a hidden talent","gets trapped in a storm","wakes up in a different year","fights to protect their home","makes a deal they regret"];
+const MC_A=["MC","Lil","Big","Young","Dr.","Captain","DJ","King","Sir","Baby","Mad","Cold"];
+const MC_B=["Typo","Thunderlips","Fumble","Static","Mumble","Shadowbox","Rhymesaurus","Ketchup","Glitch","Brickwall","Cringe","Hiccup","Wobble","Toast","Scribble","Noodle","Drizzle","Bluff","Crumbs","Banjo"];
+const AI=["MC Neural Net","Rhymebot 3000","Lil Algorithm","Auto-Tune Terry","GPT-Flow","Captain Cache","Synth Mack 9000","DJ Deepfake","MC Bufferlag","Siri-ously Sick","Binary Bruce","Chatterbox Zero"];
+const SONG=["Chasing a dream","Home","Money vs happiness","The grind never stops","Missing someone","Island life","Overcoming doubt","Late night thoughts","Growing up too fast","Loyalty","Rise from nothing","Summer love","Gratitude","Being underestimated","The city never sleeps","Leaving the past behind","Hero of my own story","Party anthem"];
+const CHAR=["Captain Mako","Auntie Lulu","Professor Bumble","Jax the Thief","Mama Tui","Detective Rain","Baron Von Chill","Tiny Tom","Queen Marisol","Old Man Kofi","Agent Zero","Sister Blaze","Mr. Whiskers","Sailor Jo","Dr. Funk"];
+const DIL=["lost the last bus home","has to pick between two best friends","forgot their lines on the biggest stage","found a wallet full of money","is stuck in an elevator with an enemy","is late to their own wedding","can’t stop telling the truth","woke up with a stranger’s voice","has 10 minutes to save the party","got swapped into someone else’s life"];
+const SET=["a floating market","the moon’s first cafe","an underwater school","a busy airport at 3am","a rainy village","a haunted barbershop","a desert gas station","the top of a volcano","a roller disco","a wedding on a ship","a jungle bus stop","inside a giant video game"];
+const SCHEMES=[
+["AAAA","Every line ends on the same rhyme sound.","I came to the booth with the heat in my chest<br>I’m pushing myself, I won’t rest<br>I’m fresh in my vest, I’m put to the test<br>I’m blessed, I’m the best, no stress"],
+["ABAB","Lines 1 and 3 rhyme, lines 2 and 4 rhyme.","The sun came up (A) and the beat came in (B)<br>I filled the cup (A) and let it begin (B)"],
+["ABBA","Lines 1 and 4 rhyme, lines 2 and 3 rhyme — the middle is wrapped in the outer rhyme.","I walk the street (A) with a plan in my mind (B)<br>no one I meet (A)… wait, flip it: left behind (B)<br>I’m leaving doubt behind (B), I keep the heat (A)"],
+["ABCBCA","Lines 1 and 6 share A, lines 2 and 4 share B, lines 3 and 5 share C.","Rhyme one on the way in (A)<br>Light shines (B), I’m on fire (C)<br>Rhyme lines (B), climbing higher (C)<br>Then I bring the first sound back to win (A)"]];
+const GOALS={
+1:["Freestyle with no filler bars or phrases.","To always rap with no hesitation.","To learn how to trust my own intuition.","To make freestyle raps sound pre-written."],
+2:["To always rap with high creativity.","To be able to incorporate whatever in a freestyle.","To be able to stay on any topic as long as I want.","To always rap about and around anything without hesitating."],
+3:["To be able to use any type of rhyme schemes in a freestyle.","To be able to apply any rhyme patterns and schemes whenever I want to."],
+4:["To be able to use figurative speech in a freestyle.","To be able to do wordplay in a freestyle.","To be able to play with words in any creative way I want to.","To become a wordsmith."],
+5:["To be able to freestyle with different forms of rap deliveries.","To be able to tell a captivating story in a freestyle form."],
+6:["To master different cadences and flow switch when freestyling on different type of beats.","To master the way of forming melodies and rhythms when freestyling."],
+7:["To become a fearless rapper who is able to confront anyone who disses me.","To become one of the best battle rappers of all time."],
+8:["To be able to improvise a whole song that sounds pre-written.","To be able to freestyle a whole song using different types of song structure."],
+9:["To leave people with great amazement.","To bring joy, positivity and a smile to the face of anyone.","To impress and inspire anyone.","To become one of the greatest freestyle rappers, entertainers and improvisers.","To make myself sound like I have a microchip implanted in my head."]};
+const MODES=[
+{n:1,name:"No Filler",desc:"Reducing filler bars and phrases.",tools:["word"]},
+{n:2,name:"Rap About Anything",desc:"Rap about and around anything with creativity.",tools:["word"]},
+{n:3,name:"Rhyme Schemes",desc:"Rhyme schemes and patterns.",tools:["word"]},
+{n:4,name:"Wordplay",desc:"Figurative speech usage and wordplay.",tools:["word"]},
+{n:5,name:"Delivery & Story",desc:"Rap delivery and storytelling.",tools:["story"]},
+{n:6,name:"Flow & Rhythm",desc:"Cadences, flows, melodies and rhythm.",tools:["word"]},
+{n:7,name:"Rap Battle",desc:"Random MCs to diss, plus AI rappers.",tools:["mc"]},
+{n:8,name:"Whole Song",desc:"Words, song topics and a Harry Mack–style challenge.",tools:["word","song","char"]},
+{n:9,name:"Freestyle Entertainment",desc:"Every tool from every mode in one place.",tools:["word","story","mc","song","char"]}];
+let timers=[],beats={},curAudio=null;
+function clearTimers(){timers.forEach(clearInterval);timers=[];if(curAudio){curAudio.pause();}}
+function saveGet(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}}
+function saveSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function home(){clearTimers();location.hash="";
+$("#app").innerHTML=`<div class="icon"><div class="g3d">FREE<br>STYLE</div></div>
+<h1 class="home-h g3d">Freestyle Identity</h1><p class="sub">Pick a mode to practice. One mode at a time.</p>
+<div class="grid">${MODES.map(m=>`<button class="tile" onclick="openMode(${m.n})"><b>Mode ${m.n}: ${m.name}</b><span>${m.desc}</span></button>`).join("")}
+<button class="tile" onclick="openGoals()"><b>Goals Mode</b><span>All nine modes’ goals in one place. Tick them off.</span></button></div>`;window.scrollTo(0,0)}
+function wordTool(id){return `<div class="card"><h3>Random word generator</h3><div class="out" id="o-${id}-word"><span class="note">Tap Generate</span></div>
+<div class="row"><button class="go" onclick="genWord('${id}')">Generate</button><select id="c-${id}-word" aria-label="How many words"><option>1</option><option>2</option><option>3</option><option>5</option></select>
+<button class="alt" id="a-${id}-word" onclick="auto('${id}','word',this)">Auto</button><select id="s-${id}-word" aria-label="Seconds"><option>3</option><option selected>5</option><option>8</option><option>12</option></select><span class="note">sec</span></div></div>`}
+function genBtn(id,key,title,fn,extra=""){return `<div class="card"><h3>${title}</h3><div class="out" id="o-${id}-${key}"><span class="note">Tap Generate</span></div>
+<div class="row"><button class="go" onclick="${fn}('${id}')">Generate</button><button class="alt" id="a-${id}-${key}" onclick="auto('${id}','${key}',this)">Auto</button><select id="s-${id}-${key}" aria-label="Seconds"><option>5</option><option selected>10</option><option>15</option><option>20</option></select><span class="note">sec</span></div>${extra}</div>`}
+function genWord(id){const n=+$(`#c-${id}-word`).value;const s=new Set();while(s.size<n)s.add(pick(WORDS));$(`#o-${id}-word`).innerHTML=[...s].map(w=>`<span class="w">${w}</span>`).join("")}
+function genStory(id){$(`#o-${id}-story`).innerHTML=`<div class="kv" style="font-size:20px">${pick(STORY_A)} ${pick(STORY_B)}.</div>`}
+function genMc(id){const real=Math.random()<.65;const mk=()=>pick(MC_A)+" "+pick(MC_B);const a=real?mk():pick(AI);$(`#o-${id}-mc`).innerHTML=`<div class="kv"><i>${real?"Opponent":"AI rapper"}:</i> <span class="w">${a}</span></div><div class="note" style="width:100%">Imagine them across from you. Diss and battle!</div>`}
+function genMcHuman(id){$(`#o-${id}-mc`).innerHTML=`<div class="kv"><i>Opponent:</i> <span class="w">${mkName()}</span></div>`}
+function mkName(){return pick(MC_A)+" "+pick(MC_B)}
+function genAI(id){$(`#o-${id}-mc`).innerHTML=`<div class="kv"><i>AI rapper:</i> <span class="w">${pick(AI)}</span></div><div class="note" style="width:100%">Just for fun: out-rhyme the machine.</div>`}
+function genSong(id){$(`#o-${id}-song`).innerHTML=`<span class="w" style="font-size:28px">${pick(SONG)}</span>`}
+function genChar(id){$(`#o-${id}-char`).innerHTML=`<div class="kv"><i>Character:</i> ${pick(CHAR)}</div><div class="kv"><i>Dilemma:</i> who ${pick(DIL)}</div><div class="kv"><i>Setting:</i> ${pick(SET)}</div>`}
+const FN={word:genWord,story:genStory,mc:genMc,song:genSong,char:genChar};
+function auto(id,key,btn){const k=id+key;const ex=timers.find(t=>t.k===k);
+if(ex){clearInterval(ex);timers=timers.filter(t=>t!==ex);btn.classList.remove("on");return}
+const f=FN[key];f(id);const t=setInterval(()=>f(id),+$(`#s-${id}-${key}`).value*1000);t.k=k;timers.push(t);btn.classList.add("on")}
+function toolHTML(t,id){
+if(t==="word")return wordTool(id);
+if(t==="story")return genBtn(id,"story","Random story topic generator","genStory");
+if(t==="song")return genBtn(id,"song","Random song topic generator","genSong");
+if(t==="char")return genBtn(id,"char","Character, dilemma and setting","genChar",`<p class="note">Like the live challenges: get a character, a dilemma and a setting, then freestyle the whole scene.</p>`);
+if(t==="mc")return `<div class="card"><h3>Random MC name generator</h3><div class="out" id="o-${id}-mc"><span class="note">Tap a button to meet your opponent</span></div>
+<div class="row"><button class="go" onclick="genMcHuman('${id}')">Random MC</button><button class="go" onclick="genAI('${id}')">AI rapper</button><button class="go" onclick="genMc('${id}')">Surprise me</button><button class="alt" id="a-${id}-mc" onclick="auto('${id}','mc',this)">Auto</button><select id="s-${id}-mc" aria-label="Seconds"><option>10</option><option selected>20</option><option>30</option></select><span class="note">sec</span></div><p class="note">Names are made up. Keep your diss playful and creative.</p></div>`}
+function algoHTML(){return `<details><summary>Setup &amp; punchline algorithm</summary><div>
+<p>Two parts: a <b>setup</b> that builds an expectation, and a <b>punchline</b> that flips or twists it. The punchline lands on the rhyme.</p>
+<ol><li><b>Pick a target word</b> (use your random word).</li><li><b>Setup line:</b> describe something normal about it. Keep the last word of the line open.</li><li><b>Punchline line:</b> twist the meaning, a double meaning or an exaggeration, and end on the rhyme.</li><li><b>Pause one beat</b> after the punchline so it hits.</li></ol>
+<div class="scheme"><b>Example:</b><br>I told the cactus I’m hurting, it just stood there, tall,<br>it said “don’t be so sharp with me,” I said “I’m just on the wall.”</div></div></details>
+<details><summary>Off-the-hook algorithm</summary><div>
+<p>For when you want the flow to run wild without stopping.</p>
+<ol><li><b>Grab the word</b> and say it in the first bar, no thinking.</li><li><b>Chain associations:</b> what does it look like, sound like, feel like? Say the first thing that comes.</li><li><b>Lock the end rhyme</b> of each line to the previous one’s last sound.</li><li><b>Never stop on a mistake.</b> Turn it into the next line.</li><li><b>Land it:</b> loop back to your first word in the last bar.</li></ol></div></details>
+<details><summary>Rhyme schemes to use</summary><div>${SCHEMES.map(s=>`<div class="scheme"><b>${s[0]}</b> — ${s[1]}<br><br>${s[2]}</div>`).join("")}</div></details>`}
+function goalsHTML(id){const st=saveGet("goals"+id,{c:{},x:[]});const all=[...GOALS[id],...st.x];
+return `<details open><summary>My goals for this mode</summary><div id="g-${id}">${all.map((g,i)=>`<label class="goal"><input type="checkbox" ${st.c[i]?"checked":""} onchange="tick(${id},${i},this.checked)"><span>${g}</span></label>`).join("")}
+<div class="row" style="margin-top:10px"><input type="text" id="gn-${id}" placeholder="Add your own goal" aria-label="Add a goal"><button class="go" onclick="addGoal(${id})">Add</button></div></div></details>`}
+function tick(id,i,v){const st=saveGet("goals"+id,{c:{},x:[]});st.c[i]=v;saveSet("goals"+id,st)}
+function addGoal(id){const el=$("#gn-"+id),v=el.value.trim();if(!v)return;const st=saveGet("goals"+id,{c:{},x:[]});st.x.push(v);saveSet("goals"+id,st);const d=GOALS[id];beatsKeep(id);openMode(id,true)}
+function beatsKeep(){}
+function beatHTML(id){return `<details open><summary>Beats &amp; instrumentals</summary><div>
+<div class="row"><label class="go" style="cursor:pointer;display:inline-block">Add beats from my files<input type="file" accept="audio/*" multiple hidden onchange="addBeats(${id},this)"></label></div>
+<div id="bl-${id}"></div><audio id="au-${id}" controls loop style="display:none" onplay="beatOn()" onpause="beatOff()"></audio>
+<p class="note">Add as many as you like. Beats stay while this page is open; add them again after a reload.</p></div></details>`}
+function addBeats(id,inp){(beats[id]=beats[id]||[]);for(const f of inp.files)beats[id].push({name:f.name,url:URL.createObjectURL(f)});inp.value="";drawBeats(id)}
+function drawBeats(id){const l=beats[id]||[];$("#bl-"+id).innerHTML=l.map((b,i)=>`<div class="beat"><span>${b.name}</span><button class="alt" onclick="playBeat(${id},${i})">Play</button><button class="alt" onclick="rmBeat(${id},${i})" aria-label="Remove">✕</button></div>`).join("")}
+function playBeat(id,i){const a=$("#au-"+id);if(curAudio&&curAudio!==a)curAudio.pause();a.src=beats[id][i].url;a.style.display="block";a.play();curAudio=a}
+function rmBeat(id,i){beats[id].splice(i,1);drawBeats(id)}
+function openMode(n,keep){if(!keep)clearTimers();const m=MODES[n-1];location.hash="mode"+n;
+$("#app").innerHTML=`<button class="back" onclick="home()">Back to modes</button><h2 class="mt g3d">Mode ${n}</h2><p class="sub" style="text-align:left;margin:0 0 6px"><b>${m.name}</b>: ${m.desc}</p>
+${m.tools.map(t=>toolHTML(t,n)).join("")}${beatHTML(n)}${algoHTML()}${goalsHTML(n)}`;drawBeats(n);if(!keep)window.scrollTo(0,0)}
+function openGoals(){clearTimers();location.hash="goals";
+$("#app").innerHTML=`<button class="back" onclick="home()">Back to modes</button><h2 class="mt g3d">Goals Mode</h2><p class="sub" style="text-align:left">Tick goals off as you reach them. Add your own inside each mode.</p>
+${MODES.map(m=>`<div class="sec">Mode ${m.n}: ${m.name}</div>${goalsHTML(m.n).replace("<details open>","<details open>")}`).join("")}`;window.scrollTo(0,0)}
+const POS={noun:WORDS,pronoun:"I,you,he,she,it,we,they,me,him,her,us,them,myself,yourself,itself,who,whom,everyone,nobody,something".split(","),
+verb:"run,jump,shine,build,break,flow,climb,whisper,shake,fly,dance,chase,burn,shout,dream,crash,spin,carry,twist,hunt,swim,write,steal,fight,rise,fall,glow,drift,melt,roar,hustle,craft,bounce,sneak,blast,wander,collect,tackle,float,squeeze".split(","),
+adverb:"quickly,slowly,boldly,quietly,never,always,almost,barely,loudly,gently,suddenly,silently,fiercely,smoothly,rarely,often,already,forever,sideways,wildly,carefully,badly,hardly,nearby,tonight".split(","),
+adjective:"shiny,broken,fearless,sticky,ancient,electric,hollow,golden,savage,tiny,massive,fragile,rusty,dizzy,silent,furious,glowing,slippery,legendary,lonely,wicked,fuzzy,brave,bitter,frozen,cosmic,sleepy,spicy,smooth,rowdy".split(","),
+conjunction:"and,but,or,so,yet,for,nor,because,although,while,unless,since,whereas,though,until,once,if,whether,after,before".split(","),
+preposition:"above,below,under,over,through,across,behind,beside,between,beyond,inside,outside,against,along,around,toward,near,within,without,onto,despite,among,upon,past".split(","),
+interjection:"wow,hey,yo,oops,ouch,boom,whoa,yikes,hooray,bam,alas,hmm,phew,yeah,ugh,aha,huh,bravo,eureka,gosh".split(",")};
+let CUS=saveGet("cus",{}),sfxOn=saveGet("sfx",true),loops=[],loopI=-1,loopWanted=false,loopPaused=false;
+const loopA=new Audio();loopA.loop=true;
+function cus(k){return CUS[k]||(CUS[k]=[])}
+function pool(p){if(p==="all")return Object.values(POS).flat().concat(Object.keys(CUS).filter(k=>k.startsWith("w_")).flatMap(k=>CUS[k]));return POS[p].concat(cus("w_"+p))}
+function clearTimers(){timers.forEach(o=>clearInterval(o.t));timers=[];if(curAudio)curAudio.pause()}
+function auto(id,key,btn){const k=id+key;const ex=timers.find(o=>o.k===k);
+if(ex){clearInterval(ex.t);timers=timers.filter(o=>o!==ex);btn.classList.remove("on");btn.textContent="Auto: off";return}
+const f=FN[key];f(id);timers.push({k,t:setInterval(()=>f(id),+$(`#s-${id}-${key}`).value*1000)});btn.classList.add("on");btn.textContent="Auto: on"}
+function wordTool(id){const P=["all","noun","pronoun","verb","adverb","adjective","conjunction","preposition","interjection"];
+return `<div class="card"><h3>Random word generator</h3><div class="out" id="o-${id}-word"><span class="note">Tap Generate</span></div>
+<div class="row"><button class="go" onclick="genWord('${id}')">Generate</button><button class="alt" id="a-${id}-word" onclick="auto('${id}','word',this)">Auto: off</button><select id="s-${id}-word" aria-label="Seconds"><option>3</option><option selected>5</option><option>8</option><option>12</option></select><span class="note">sec</span></div>
+<div class="row" style="margin-top:8px"><select id="p-${id}" aria-label="Word type">${P.map(p=>`<option value="${p}">${p.toUpperCase()}</option>`).join("")}</select><label class="note">Amount (1–100) <input type="number" id="c-${id}-word" min="1" max="100" value="1" style="width:78px;background:var(--wall2);color:var(--text);border:2px solid var(--line);border-radius:8px;padding:8px;font:inherit"></label></div></div>`}
+function genWord(id){const el=$(`#c-${id}-word`);const n=Math.max(1,Math.min(100,parseInt(el.value)||1));el.value=n;const p=pool($(`#p-${id}`).value);let o=[];while(o.length<n)o=o.concat(p.slice().sort(()=>Math.random()-.5));o=o.slice(0,n);
+const fs=n>40?15:n>15?20:n>5?26:40;$(`#o-${id}-word`).innerHTML=o.map(w=>`<span class="w" style="font-size:${fs}px">${w}</span>`).join("")}
+function genStory(id){const c=cus("story");const t=c.length&&Math.random()<.4?pick(c):`${pick(STORY_A)} ${pick(STORY_B)}.`;$(`#o-${id}-story`).innerHTML=`<div class="kv" style="font-size:20px">${t}</div>`}
+function mkName(){const c=cus("mc");return c.length&&Math.random()<.35?pick(c):pick(MC_A)+" "+pick(MC_B)}
+function genMc(id){Math.random()<.65?genMcHuman(id):genAI(id)}
+function genMcHuman(id){$(`#o-${id}-mc`).innerHTML=`<div class="kv"><i>Opponent:</i> <span class="w">${mkName()}</span></div><div class="note" style="width:100%">Imagine them across from you. Diss and battle!</div>`}
+function genAI(id){$(`#o-${id}-mc`).innerHTML=`<div class="kv"><i>AI rapper:</i> <span class="w">${pick(AI.concat(cus("ai")))}</span></div><div class="note" style="width:100%">Just for fun: out-rhyme the machine.</div>`}
+function genSong(id){$(`#o-${id}-song`).innerHTML=`<span class="w" style="font-size:28px">${pick(SONG.concat(cus("song")))}</span>`}
+function genChar(id){const L=(a,k)=>pick(a.concat(cus(k)));const d=cus("dil");const dil=d.length&&Math.random()<.4?pick(d):"who "+pick(DIL);
+$(`#o-${id}-char`).innerHTML=`<div class="kv"><i>Character:</i> ${L(CHAR,"char")}</div><div class="kv"><i>Dilemma:</i> ${dil}</div><div class="kv"><i>Setting:</i> ${L(SET,"set")}</div>`}
+function addRow(id,key){const sel={mc:[["mc","Opponent"],["ai","AI rapper"]],char:[["char","Character"],["dil","Dilemma"],["set","Setting"]]}[key];
+return `<div class="row" style="margin-top:10px"><input type="text" id="ad-${id}-${key}" placeholder="Add your own (commas for several)" aria-label="Add your own">${sel?`<select id="as-${id}-${key}" aria-label="Type">${sel.map(s=>`<option value="${s[0]}">${s[1]}</option>`).join("")}</select>`:""}<button class="alt" onclick="addItem('${id}','${key}')">+ Add</button></div><div class="note" id="am-${id}-${key}"></div>`}
+function addItem(id,key){const el=$(`#ad-${id}-${key}`),v=el.value.trim();if(!v)return;const k=key==="word"?"w_"+$(`#p-${id}`).value:(key==="story"||key==="song")?key:$(`#as-${id}-${key}`).value;
+v.split(",").map(s=>s.trim()).filter(Boolean).forEach(x=>cus(k).push(x));saveSet("cus",CUS);el.value="";$(`#am-${id}-${key}`).textContent="Added. It’s now in the mix."}
+const _th=toolHTML;toolHTML=function(t,id){const h=_th(t,id);const m=h.lastIndexOf("</div>");return h.slice(0,m)+addRow(id,t)+h.slice(m)};
+let ctx;function sfx(t){if(!sfxOn)return;try{ctx=ctx||new(window.AudioContext||window.webkitAudioContext)();const f={tap:[420],gen:[520,780],open:[300,600]}[t],now=ctx.currentTime;
+f.forEach((hz,i)=>{const o=ctx.createOscillator(),g=ctx.createGain(),s=now+i*.07;o.type="square";o.frequency.value=hz;g.gain.setValueAtTime(.06,s);g.gain.exponentialRampToValueAtTime(.001,s+.12);o.connect(g);g.connect(ctx.destination);o.start(s);o.stop(s+.13)})}catch(e){}}
+document.addEventListener("click",e=>{const b=e.target.closest("button,summary,label.go");if(!b)return;sfx(b.classList.contains("tile")?"open":b.classList.contains("go")?"gen":"tap")},true);
+function setTheme(t){document.documentElement.dataset.theme=t;saveSet("theme",t);$("#thbtn").textContent=t==="light"?"☀️ Day":"🌙 Night"}
+function openModal(k){$("#modal").style.display="flex";$("#mbody").innerHTML=k==="theme"?themeHTML():k==="font"?fontHTML():k==="bg"?bgHTML():soundHTML()}
+function closeModal(){$("#modal").style.display="none"}
+function themeHTML(){const t=document.documentElement.dataset.theme;return `<h3 class="rap">Theme</h3><div class="row"><button class="alt ${t==="dark"?"on":""}" onclick="setTheme('dark');openModal('theme')">🌙 Night</button><button class="alt ${t==="light"?"on":""}" onclick="setTheme('light');openModal('theme')">☀️ Day</button></div>`}
+function soundHTML(){return `<h3 class="rap">Sound</h3><div class="row"><button class="alt ${sfxOn?"on":""}" onclick="toggleSfx()">Tap sounds: ${sfxOn?"on":"off"}</button></div>
+<p class="note">A short sound plays when you tap modes, buttons and generators.</p><h3 class="rap" style="margin-top:14px">App loop instrumentals</h3>
+<label class="go" style="cursor:pointer;display:inline-block">Add loops from my files<input type="file" accept="audio/*" multiple hidden onchange="addLoops(this)"></label>
+${loops.map((b,i)=>`<div class="beat"><span>${b.name}${i===loopI?" (selected)":""}</span><button class="alt" onclick="playLoop(${i})">Play</button><button class="alt" onclick="rmLoop(${i})" aria-label="Remove">✕</button></div>`).join("")}
+<div class="row" style="margin-top:8px"><button class="alt" onclick="stopLoop()">Stop loop</button></div>
+<p class="note">The loop plays while you browse. When you play a beat inside a mode, the loop pauses and resumes when that beat stops. Files stay only while this page is open.</p>`}
+function toggleSfx(){sfxOn=!sfxOn;saveSet("sfx",sfxOn);openModal("sound")}
+function addLoops(i){for(const f of i.files)loops.push({name:f.name,url:URL.createObjectURL(f)});i.value="";openModal("sound")}
+function playLoop(i){loopI=i;loopA.src=loops[i].url;loopWanted=true;if(curAudio&&!curAudio.paused)loopPaused=true;else{loopPaused=false;loopA.play().catch(()=>{})}openModal("sound")}
+function stopLoop(){loopWanted=false;loopPaused=false;loopA.pause()}
+function rmLoop(i){if(i===loopI){stopLoop();loopI=-1}else if(i<loopI)loopI--;loops.splice(i,1);openModal("sound")}
+function beatOn(){if(loopWanted&&!loopA.paused){loopA.pause();loopPaused=true}}
+function beatOff(){if(loopWanted&&loopPaused){loopPaused=false;loopA.play().catch(()=>{})}}
+const BGS={brick:["Brick wall",null],
+graffiti:["Graffiti splash","background:radial-gradient(circle at 20% 25%,#ff2e93 0,transparent 35%),radial-gradient(circle at 80% 20%,#00d4ff 0,transparent 35%),radial-gradient(circle at 55% 85%,#ffd60a 0,transparent 40%),#2a1650"],
+vinyl:["Vinyl record","background:repeating-radial-gradient(circle at 50% 30%,#0e0e10 0 6px,#2a2a30 6px 8px),#111"],
+neon:["Neon city grid","background:linear-gradient(rgba(255,255,255,.1) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(90deg,rgba(255,255,255,.1) 1px,transparent 1px) 0 0/40px 40px,linear-gradient(180deg,#1a0b3d,#6a1b9a 55%,#ff3d81)"],
+checker:["Checker floor","background:conic-gradient(#111 25%,#e8e8e8 0 50%,#111 0 75%,#e8e8e8 0) 0 0/60px 60px"],
+halftone:["Pop halftone","background:radial-gradient(#ff3d81 22%,transparent 24%) 0 0/22px 22px,radial-gradient(#00d4ff 22%,transparent 24%) 11px 11px/22px 22px,#1d1d2b"],
+concrete:["Concrete","background:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1.5px) 0 0/7px 7px,radial-gradient(rgba(0,0,0,.3) 1px,transparent 1.5px) 3px 3px/9px 9px,linear-gradient(135deg,#4a4a50,#2e2e33)"],
+spotlight:["Stage spotlight","background:radial-gradient(ellipse at 50% -10%,#fff4c2 0,rgba(255,214,10,.35) 18%,transparent 55%),#16161a"],
+gold:["Gold chain","background:repeating-linear-gradient(135deg,#1a1405 0 14px,#b8860b 14px 18px,#ffd60a 18px 20px,#1a1405 20px 34px)"],
+sunset:["Sunset block","background:linear-gradient(180deg,#ff7a18,#af002d 45%,#1b0f3a 46%,#0b0618)"]};
+const FONTS=[["orig","Original","Rubik,sans-serif","",""],["bangers","Comic Bang","Bangers","#ff5ea8","#b0005a"],["bungee","Street Sign","Bungee","#4df0b0","#006b4a"],["salt","Hand Scrawl","'Rock Salt'","#ffb347","#8a3b00"],["ops","Army Stencil","'Black Ops One'","#9dff4d","#1c5200"],["type","Typewriter","'Special Elite'","#f0e6c8","#3b2a00"],["orb","Future Tech","Orbitron","#00e5ff","#003f66"],["marker","Marker","'Permanent Marker'","#e8d5ff","#3b1a7a"],["russo","Heavy Block","'Russo One'","#ff6b4a","#8a1a00"],["right","Smooth Retro","Righteous","#7fdcff","#0a4a75"]];
+(()=>{let s="";for(const k in BGS)if(BGS[k][1])s+=`html[data-bg="${k}"] body,.bgp[data-k="${k}"]{${BGS[k][1]}}`;
+FONTS.forEach(f=>{if(f[0]==="orig")return;s+=`html[data-font="${f[0]}"] *:not(.g3d){font-family:${f[2]},sans-serif!important}html[data-font="${f[0]}"]{--text:${f[3]}}html[data-theme="light"][data-font="${f[0]}"]{--text:${f[4]}}`});
+const st=document.createElement("style");st.textContent=s;document.head.appendChild(st)})();
+function applyFont(k){const h=document.documentElement;if(k==="orig")h.removeAttribute("data-font");else h.dataset.font=k}
+function setFont(k){applyFont(k);saveSet("font",k);openModal("font")}
+function setBg(k){document.documentElement.dataset.bg=k;saveSet("bg",k);openModal("bg")}
+function fontHTML(){const cur=saveGet("font","orig"),day=document.documentElement.dataset.theme==="light";
+return `<h3 class="rap">Font</h3><p class="note">The font colour follows Day or Night.</p>`+FONTS.map(f=>`<button class="alt ${f[0]===cur?"on":""}" onclick="setFont('${f[0]}')" style="display:block;width:100%;text-align:left;margin:6px 0;font-family:${f[2]}!important;color:${f[3]?(day?f[4]:f[3]):"var(--text)"}">${f[1]}: Build your Freestyle Identity</button>`).join("")}
+function bgHTML(){const cur=saveGet("bg","brick");return `<h3 class="rap">Background</h3><p class="note">Each one adapts to Day and Night.</p><div class="row">`+Object.keys(BGS).map(k=>`<button class="alt ${k===cur?"on":""}" onclick="setBg('${k}')" style="padding:0;overflow:hidden;width:calc(50% - 4px)"><div class="bgp" data-k="${k}" style="height:52px"></div><div style="padding:6px;font-size:13px">${BGS[k][0]}</div></button>`).join("")+`</div>`}
+setTheme(saveGet("theme","dark"));applyFont(saveGet("font","orig"));document.documentElement.dataset.bg=saveGet("bg","brick");
+$("#intro").onclick=endIntro;
+function endIntro(){const i=$("#intro");if(i){i.remove()}}
+let dip=null,instHidden=false;
+function showInst(){const el=$("#inst");if(!el)return;const sa=matchMedia("(display-mode: standalone)").matches||navigator.standalone;
+if(sa||instHidden){el.innerHTML="";return}
+const x=`<button class="alt" onclick="hideInst()" aria-label="Dismiss">\u2715</button>`;
+if(dip)el.innerHTML=`<div class="card inst"><b class="rap">Install Freestyle Identity</b><span class="note">Add it to your home screen or desktop.</span><button class="go" onclick="doInstall()">Install app</button>${x}</div>`;
+else if(/iphone|ipad|ipod/i.test(navigator.userAgent))el.innerHTML=`<div class="card inst"><b class="rap">Install Freestyle Identity</b><span class="note">Tap the Share button, then Add to Home Screen.</span>${x}</div>`;
+else el.innerHTML=""}
+addEventListener("beforeinstallprompt",e=>{e.preventDefault();dip=e;showInst()});
+addEventListener("appinstalled",()=>{dip=null;showInst()});
+async function doInstall(){if(!dip)return;dip.prompt();try{await dip.userChoice}catch(e){}dip=null;showInst()}
+function hideInst(){instHidden=true;showInst()}
+setTimeout(endIntro,6000);
+showInst();
+home();
+</script>
+<script>if("serviceWorker"in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))</script>
+</body>
+</html>
